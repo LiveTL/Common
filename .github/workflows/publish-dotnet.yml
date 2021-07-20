@@ -20,6 +20,7 @@ jobs:
         uses: rohith/publish-nuget@v2
         with: 
           PROJECT_FILE_PATH: dotnet/Common.Lib/Common.csproj
+          VERSION_REGEX: ^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$
           TAG_COMMIT: false
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
           INCLUDE_SYMBOLS: true
