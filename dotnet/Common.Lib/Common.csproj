@@ -4,7 +4,7 @@
     <PackageId>LiveTL.Common.Lib</PackageId>
     <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
     <RootNamespace>LiveTL.Common</RootNamespace>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>LiveTL Developers</Authors>
     <Copyright>© 2020 - 2021 LiveTL Developers</Copyright>
     <PackageProjectUrl>https://livetl.app</PackageProjectUrl>
