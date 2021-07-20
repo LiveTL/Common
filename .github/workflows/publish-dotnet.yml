@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Publish to Nuget
+
+# Controls when the workflow will run
+on:
+  push:
+    branches:
+      - master
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  publish: 
+    name: Publish LiveTL.Common.Lib to Nuget
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: publish on version change
+        id: publish_nuget
+        uses: rohit/publish-nuget@v2
+        with: 
+          PROJECT_FILE_PATH: dotnet/Common.Lib/Common.csproj
+          TAG_COMMIT: false
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          INCLUDE_SYMBOLS: true
