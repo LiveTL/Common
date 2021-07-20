@@ -1,0 +1,11 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+.idea/
+.vs/
+
+API/google_application_credentials.json
+LiveTL.sln.DotSettings.user
+TestApp/lib/*
