@@ -5,9 +5,10 @@ name: Publish to NPM
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
     paths:
-      - javascript/api-wrapper/
+      - javascript/api-wrapper/**
 
 jobs:
   publish-npm:
