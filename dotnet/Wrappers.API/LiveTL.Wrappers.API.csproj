@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>LiveTL.Wrappers.API</PackageId>
+    <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+    <RootNamespace>LiveTL.Wrappers.API</RootNamespace>
+    <Version>0.1.0</Version>
+    <Authors>LiveTL Developers</Authors>
+    <Copyright>© 2020 - 2021 LiveTL Developers</Copyright>
+    <PackageProjectUrl>https://livetl.app</PackageProjectUrl>
+    <PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
+    <Description>A set of wrappers for calling the LiveTL API</Description>
+    <PackageIcon>livetl.png</PackageIcon>
+    <RepositoryUrl>https://github.com/LiveTL/Common/dotnet/Wrappers.API/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../livetl.png" Pack="true" Visible="false" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LiveTL.Common.Lib" Version="0.1.1" />
+  </ItemGroup>
+
+</Project>

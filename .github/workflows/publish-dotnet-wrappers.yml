@@ -1,0 +1,23 @@
+name: Publish LiveTL.Wrappers.API
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - dotnet/Wrappers.API/**
+
+jobs:
+  publish: 
+    name: Publish LiveTL.Wrappers.API to Nuget
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: publish on version change
+        id: publish_nuget
+        uses: rohith/publish-nuget@v2
+        with: 
+          PROJECT_FILE_PATH: dotnet/Wrappers.API/LiveTL.Wrappers.API.csproj
+          TAG_COMMIT: false
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          # INCLUDE_SYMBOLS: true
