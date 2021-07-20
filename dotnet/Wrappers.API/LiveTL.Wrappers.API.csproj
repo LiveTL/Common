@@ -3,6 +3,7 @@
   <PropertyGroup>
     <PackageId>LiveTL.Wrappers.API</PackageId>
     <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
     <RootNamespace>LiveTL.Wrappers.API</RootNamespace>
     <Version>0.1.0</Version>
     <Authors>LiveTL Developers</Authors>
