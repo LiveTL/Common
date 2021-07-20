@@ -1,0 +1,17 @@
+{
+  "name": "@livetl/api-wrapper",
+  "version": "1.0.0",
+  "description": "A set of functions wrapping LiveTL API Endpoints",
+  "license": "AGPL-3.0",
+  "author": "Grumpy Bear",  
+  "main": "src/api.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LiveTL/Common.git",
+    "directory": "javascript/api-wrapper"
+  },
+  "bugs": {
+    "url": "https://github.com/LiveTL/Common/issues"
+  },
+  "homepage": "https://github.com/LiveTL/Common#readme"
+}
