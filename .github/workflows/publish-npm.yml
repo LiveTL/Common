@@ -9,7 +9,7 @@ on:
 
 jobs:
   publish-npm:
-    name: Publish LiveTL@
+    name: Publish LiveTL@api-wrapper
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
