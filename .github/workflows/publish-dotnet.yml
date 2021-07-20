@@ -22,4 +22,4 @@ jobs:
           PROJECT_FILE_PATH: dotnet/Common.Lib/Common.csproj
           TAG_COMMIT: false
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-          INCLUDE_SYMBOLS: true
+          # INCLUDE_SYMBOLS: true
