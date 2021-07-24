@@ -8,7 +8,7 @@
     <Authors>LiveTL Developers</Authors>
     <Copyright>© 2020 - 2021 LiveTL Developers</Copyright>
     <PackageProjectUrl>https://livetl.app</PackageProjectUrl>
-    <PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
+    <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
     <Description>Common classes for .NET projects using the LiveTL API</Description>
     <PackageIcon>livetl.png</PackageIcon>
     <RepositoryUrl>https://github.com/LiveTL/Common/dotnet/Common.Lib/</RepositoryUrl>
