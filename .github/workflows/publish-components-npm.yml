@@ -22,10 +22,14 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: |
           cd ui-components
+          cd submodules/LiveTL
+          npm run update:list
+          cd ../..
           cp -r submodules/LiveTL/src build
           cp -r submodules/LiveTL/theme build/theme
           cd build
           rm -rf manifest.json empty.html submodules __tests__ plugins
+          cp -r submodules/LiveTL/src/*.json build/plugins 
           cd ..
           node utils/package.js
           npm publish build --access public
