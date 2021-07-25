@@ -31,7 +31,7 @@ Object.keys(deps).forEach(dep => {
 const finalPackageJson = Object.assign(defaultPackageJson, {
   dependencies: deps
 });
-fs.writeFileSync('./package.json', JSON.stringify(
+fs.writeFileSync('./build/package.json', JSON.stringify(
   finalPackageJson,
   '',
   2
