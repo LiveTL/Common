@@ -29,7 +29,7 @@ jobs:
           cp -r submodules/LiveTL/theme build/theme
           cd build
           rm -rf manifest.json empty.html submodules __tests__ plugins
-          cp -r submodules/LiveTL/src/*.json build/plugins 
+          cp -r submodules/LiveTL/src/plugins/*.json build/plugins 
           cd ..
           node utils/package.js
           npm publish build --access public
