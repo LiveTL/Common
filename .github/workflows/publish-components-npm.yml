@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - ui-components/**
+      - javascript/ui-components/**
   workflow_dispatch:
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
           node-version: 14
           registry-url: https://registry.npmjs.org/
       - run: |
-          cd ui-components
+          cd javascript/ui-components
           cd submodules/LiveTL
           npm run update:list
           cd ../..
