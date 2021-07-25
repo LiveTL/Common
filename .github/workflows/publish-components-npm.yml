@@ -23,6 +23,7 @@ jobs:
       - run: |
           cd ui-components
           cp -r submodules/LiveTL/src build
+          cp -r submodules/LiveTL/theme build/theme
           cd build
           rm -rf manifest.json empty.html submodules __tests__ plugins
           cd ..
