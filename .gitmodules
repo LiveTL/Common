@@ -1,3 +1,3 @@
-[submodule "svelte/submodules/LiveTL"]
+[submodule "ui-components/submodules/LiveTL"]
 	path = ui-components/submodules/LiveTL
 	url = https://github.com/LiveTL/LiveTL
