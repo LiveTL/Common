@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - ui-components/**
+  workflow_dispatch:
 
 jobs:
   publish-npm:
