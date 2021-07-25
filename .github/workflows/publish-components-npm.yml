@@ -21,7 +21,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: |
           cd ui-components
-          cp submodules/LiveTL/src build
+          cp -r submodules/LiveTL/src build
           cd build
           rm -rf manifest.json empty.html submodules __tests__ plugins
           cd ..
