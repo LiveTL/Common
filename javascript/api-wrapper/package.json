@@ -2,7 +2,7 @@
   "name": "@livetl/api-wrapper",
   "version": "0.1.1",
   "description": "A set of functions wrapping LiveTL API Endpoints",
-  "license": "AGPL-3.0",
+  "license": "LGPL-3.0",
   "author": "LiveTL Developers",
   "main": "src/api.js",
   "repository": {
