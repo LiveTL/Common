@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 
-let defaultPackageJson = require('./package.json');
+let defaultPackageJson = require('../package.json');
 
 let ltlPackageJson = require('../submodules/LiveTL/package.json');
 let deps = ltlPackageJson.dependencies;
