@@ -39,6 +39,16 @@ export async function loadTranslations(videoId, langCode, since = -1, requiredTr
 }
 
 /**
+ * Returns an EventSource URL for receiving new translation notifications on the specified video, in the specified language
+ * @param videoId The video to receive new translation notifications for
+ * @param langCode The ISO-639-1 language code to receive new translation notifications for
+ * @returns {string} The endpoint URL to connect an event source
+ */
+export function getTranslationNotificationsEndpointUrl(videoId, langCode) {
+  return `${apiHost}/notifications/translations?videoId=${videoId}&languageCode=${langCode}`;
+}
+
+/**
  * Creates a translation in the API
  * @param translation The translation to create. Object must contain the following properties: `videoId` `languageCode`, `translatedText`, `start`, and optionally `end`
  * @param authToken The authentication token for the user. User must be a registered translator
