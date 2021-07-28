@@ -1,6 +1,6 @@
 {
   "name": "@livetl/api-wrapper",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A set of functions wrapping LiveTL API Endpoints",
   "license": "LGPL-3.0",
   "author": "LiveTL Developers",
