@@ -3,16 +3,23 @@ const apiHost = 'https://api.livetl.app';
 /* eslint-disable no-unused-vars */
 /* eslint-disable quote-props */
 
+/**
+ * @typedef {number} Milliseconds
+ * @typedef {{ Code: string, Name: string, NativeName: string }} Language
+ * @typedef {{ videoId: string, languageCode: string, translatedText: string, start: Milliseconds, end: Miliseconds }} Translation
+ * @typedef {{ UserId: string, DisplayName: string, ProfilePictureUrl: string, Type: string, Languages: Language[] }} Translator
+ */
+
 /* Translations */
 
 /**
  * Returns all translations in a language for a video, with optional filters
- * @param videoId The video to load translations for
- * @param langCode The ISO-639-1 language code to load translations for
- * @param since The minimum timestamp (in ms) for translations
- * @param requiredTranslators A list of translators IDs that that translations must be created by (cannot be used with excluded translators)
- * @param excludedTranslators A list of translators IDs that that translations must not be created by (cannot be used with required translators)
- * @returns {Promise<Object[]>|string} The loaded translations, or a data validation/API error message
+ * @param {string} videoId The video to load translations for
+ * @param {string} langCode The ISO-639-1 language code to load translations for
+ * @param {Milliseconds} since The minimum timestamp (in ms) for translations
+ * @param {string[]} requiredTranslators A list of translators IDs that that translations must be created by (cannot be used with excluded translators)
+ * @param {string[]} excludedTranslators A list of translators IDs that that translations must not be created by (cannot be used with required translators)
+ * @returns {Promise<Translation[]>|string} The loaded translations, or a data validation/API error message
  */
 export async function loadTranslations(videoId, langCode, since = -1, requiredTranslators = [], excludedTranslators = []) {
   if (videoId.length > 11) {
@@ -40,8 +47,8 @@ export async function loadTranslations(videoId, langCode, since = -1, requiredTr
 
 /**
  * Returns an EventSource URL for receiving new translation notifications on the specified video, in the specified language
- * @param videoId The video to receive new translation notifications for
- * @param langCode The ISO-639-1 language code to receive new translation notifications for
+ * @param {string} videoId The video to receive new translation notifications for
+ * @param {string} langCode The ISO-639-1 language code to receive new translation notifications for
  * @returns {string} The endpoint URL to connect an event source
  */
 export function getTranslationNotificationsEndpointUrl(videoId, langCode) {
@@ -50,8 +57,8 @@ export function getTranslationNotificationsEndpointUrl(videoId, langCode) {
 
 /**
  * Creates a translation in the API
- * @param translation The translation to create. Object must contain the following properties: `videoId` `languageCode`, `translatedText`, `start`, and optionally `end`
- * @param authToken The authentication token for the user. User must be a registered translator
+ * @param {Translation} translation The translation to create. Object must contain the following properties: `videoId` `languageCode`, `translatedText`, `start`, and optionally `end`
+ * @param {string} authToken The authentication token for the user. User must be a registered translator
  * @returns {Promise<boolean|string>} True if the translation was created successfully, or the data validation/API error message
  */
 export async function createTranslation(translation, authToken) {
@@ -93,9 +100,9 @@ export async function createTranslation(translation, authToken) {
 
 /**
  * Updates a translation with the API
- * @param translationId The ID of the translation to update
- * @param newTranslation The updated translation to send. Valid properties to update are `TranslatedText`, `Start`, `End`
- * @param authToken The authentication token for the user. User must be a registered translator
+ * @param {string} translationId The ID of the translation to update
+ * @param {Translation} newTranslation The updated translation to send. Valid properties to update are `TranslatedText`, `Start`, `End`
+ * @param {string} authToken The authentication token for the user. User must be a registered translator
  * @returns {Promise<boolean|string>} True if the translation was updated successfully, false if nothing needed to be updated, or the data validation/API error message
  */
 export async function updateTranslation(translationId, newTranslation, authToken) {
@@ -135,9 +142,9 @@ export async function updateTranslation(translationId, newTranslation, authToken
 
 /**
  * Delete (or create a request to delete) a translation from the API
- * @param translationId The ID of the translation to delete
- * @param reason The reason the user is deleting the translation
- * @param authToken The authentication token for the user. User must be a registered translator
+ * @param {string} translationId The ID of the translation to delete
+ * @param {string} reason The reason the user is deleting the translation
+ * @param {string} authToken The authentication token for the user. User must be a registered translator
  * @returns {Promise<boolean|string>} True if the translation was deleted successfully, false if a delete request was created, or the data validation/API error message
  */
 export async function deleteTranslation(translationId, reason, authToken) {
@@ -173,10 +180,10 @@ export async function deleteTranslation(translationId, reason, authToken) {
 
 /**
  * Imports translations from a subtitle file
- * @param videoId The video to import translations on
- * @param langCode The language to import translations in
- * @param subtitleContents The contents of the subtitle file. Supported formats are SSA/ASS and SRT
- * @param authToken The authentication token for the user. User must be a registered translator
+ * @param {string} videoId The video to import translations on
+ * @param {string} langCode The language to import translations in
+ * @param {string} subtitleContents The contents of the subtitle file. Supported formats are SSA/ASS and SRT
+ * @param {string} authToken The authentication token for the user. User must be a registered translator
  * @returns {Promise<boolean|string>} True if the translation was imported successfully, or the data validation/API error message
  */
 export async function uploadSubtitles(videoId, langCode, subtitleContents, authToken) {
@@ -208,8 +215,8 @@ export async function uploadSubtitles(videoId, langCode, subtitleContents, authT
 
 /**
  * Find a specific translator by their ID
- * @param userId The User ID too lookup
- * @returns {Promise<Object|string>} The translator object, or an error message from the API
+ * @param {string} userId The User ID too lookup
+ * @returns {Promise<Translator|string>} The translator object, or an error message from the API
  */
 export async function getTranslator(userId) {
   if (userId.length === 0) {
@@ -226,7 +233,7 @@ export async function getTranslator(userId) {
 
 /**
  * Get all registered translators
- * @returns {Promise<Object[]|string>} A list of all registered translators
+ * @returns {Promise<Translators[]|string>} A list of all registered translators
  */
 export async function getTranslators() {
   const response = await fetch(`${apiHost}/translators/registered`);
@@ -239,8 +246,8 @@ export async function getTranslators() {
 
 /**
  * Register a user as a translator
- * @param translatableLanguages An array of two (or more) ISO 629-1 language codes the user is able to translate to/from
- * @param authToken The authentication token for the user
+ * @param {string[]} translatableLanguages An array of two (or more) ISO 629-1 language codes the user is able to translate to/from
+ * @param {string} authToken The authentication token for the user
  * @returns {Promise<boolean|string>} True if the user was registered successfully, or the data validation/API error message
  */
 export async function registerAsTranslator(translatableLanguages, authToken) {
