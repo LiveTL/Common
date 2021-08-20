@@ -59,7 +59,7 @@ export function getTranslationNotificationsEndpointUrl(videoId, langCode) {
  * Creates a translation in the API
  * @param {Translation} translation The translation to create. Object must contain the following properties: `videoId` `languageCode`, `translatedText`, `start`, and optionally `end`
  * @param {string} authToken The authentication token for the user. User must be a registered translator
- * @returns {Promise<boolean|string>} True if the translation was created successfully, or the data validation/API error message
+ * @returns {Promise<number|string>} The translation ID if the translation was created successfully, or the data validation/API error message
  */
 export async function createTranslation(translation, authToken) {
   if (translation.videoId.length > 11) {
@@ -95,19 +95,19 @@ export async function createTranslation(translation, authToken) {
     return await response.text();
   }
 
-  return true;
+  return parseInt(await response.text());
 }
 
 /**
  * Updates a translation with the API
- * @param {string} translationId The ID of the translation to update
+ * @param {number} translationId The ID of the translation to update
  * @param {Translation} newTranslation The updated translation to send. Valid properties to update are `TranslatedText`, `Start`, `End`
  * @param {string} authToken The authentication token for the user. User must be a registered translator
  * @returns {Promise<boolean|string>} True if the translation was updated successfully, false if nothing needed to be updated, or the data validation/API error message
  */
 export async function updateTranslation(translationId, newTranslation, authToken) {
   if (typeof (translationId) !== 'number') {
-    return 'Invalid translation ID time';
+    return 'Invalid translation ID';
   }
 
   if (newTranslation.start < 0) {
@@ -142,14 +142,14 @@ export async function updateTranslation(translationId, newTranslation, authToken
 
 /**
  * Delete (or create a request to delete) a translation from the API
- * @param {string} translationId The ID of the translation to delete
+ * @param {number} translationId The ID of the translation to delete
  * @param {string} reason The reason the user is deleting the translation
  * @param {string} authToken The authentication token for the user. User must be a registered translator
  * @returns {Promise<boolean|string>} True if the translation was deleted successfully, false if a delete request was created, or the data validation/API error message
  */
 export async function deleteTranslation(translationId, reason, authToken) {
   if (typeof (translationId) !== 'number') {
-    return 'Invalid translation ID time';
+    return 'Invalid translation ID';
   }
 
   if (reason.length === 0) {
