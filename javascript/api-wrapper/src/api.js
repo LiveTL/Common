@@ -19,9 +19,10 @@ const apiHost = 'https://api.livetl.app';
  * @param {Milliseconds} since The minimum timestamp (in ms) for translations
  * @param {string[]} requiredTranslators A list of translators IDs that that translations must be created by (cannot be used with excluded translators)
  * @param {string[]} excludedTranslators A list of translators IDs that that translations must not be created by (cannot be used with required translators)
+ * @param {boolean} useCache Indicates to the API that it should bypass the Redis cache
  * @returns {Promise<Translation[]>|string} The loaded translations, or a data validation/API error message
  */
-export async function loadTranslations(videoId, langCode, since = -1, requiredTranslators = [], excludedTranslators = []) {
+export async function loadTranslations(videoId, langCode, since = -1, requiredTranslators = [], excludedTranslators = [], useCache = true) {
   if (videoId.length > 11) {
     return 'Video ID must be a valid YouTube Video ID (11 chars)';
   }
@@ -34,10 +35,39 @@ export async function loadTranslations(videoId, langCode, since = -1, requiredTr
     return 'Required and Excluded Translators filters are mutually exclusive';
   }
 
-  const required = requiredTranslators.join(',');
-  const excluded = excludedTranslators.join(',');
+  let requestString = `${apiHost}/translations/${videoId}/${langCode}`;
+  const requestParameters = {};
+  if (since > -1) {
+    requestParameters['since'] = since;
+  }
 
-  const response = await fetch(`${apiHost}/translations/${videoId}/${langCode}?since=${since}&require=${required}&exclude=${excluded}`);
+  if (requiredTranslators.length > 0) {
+    requestParameters['required'] = requiredTranslators.join(',');
+  }
+
+  if (excludedTranslators.length > 0) {
+    requestParameters['exclude'] = excludedTranslators.join(',');
+  }
+
+  let first = true;
+  for (const parameter in requestParameters) {
+    if (first) {
+      requestString += `?${parameter}=${requestParameters.parameter}`;
+      continue;
+    }
+
+    requestString += `&${parameter}=${requestParameters.parameter}`;
+  }
+
+  let response;
+  if (useCache) {
+    response = await fetch(requestString);
+  } else {
+    response = await fetch(requestString, {
+      headers: { 'Cache-Control': 'no-cache' }
+    });
+  }
+
   if (response.ok === false) {
     return await response.text();
   }
