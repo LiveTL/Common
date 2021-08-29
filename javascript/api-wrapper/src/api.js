@@ -108,7 +108,7 @@ export async function createTranslation(translation, authToken) {
     return 'Invalid start time';
   }
 
-  if (translation.end !== null && translation.end !== undefined && translation.end >= translation.start) {
+  if (translation.end !== null && translation.end !== undefined && translation.end <= translation.start) {
     return 'Invalid end time';
   }
 
@@ -144,7 +144,7 @@ export async function updateTranslation(translationId, newTranslation, authToken
     return 'Invalid new start time';
   }
 
-  if (newTranslation.end !== null && newTranslation.end !== undefined && newTranslation.end >= newTranslation.start) {
+  if (newTranslation.end !== null && newTranslation.end !== undefined && newTranslation.end <= newTranslation.start) {
     return 'Invalid new end time';
   }
 
@@ -161,9 +161,9 @@ export async function updateTranslation(translationId, newTranslation, authToken
     return await response.text();
   }
 
-  if (response.statusCode === 200) {
+  if (response.status === 200) {
     return false;
-  } else if (response.statusCode === 204) {
+  } else if (response.status === 204) {
     return true;
   } else {
     return `Unknown API response: ${response.statusText}`; // API should only return 200 or 204 when it doesn't fail
@@ -199,9 +199,9 @@ export async function deleteTranslation(translationId, reason, authToken) {
     return await response.text();
   }
 
-  if (response.statusCode === 202) {
+  if (response.status === 202) {
     return false;
-  } else if (response.statusCode === 204) {
+  } else if (response.status === 204) {
     return true;
   } else {
     return `Unknown API response: ${response.statusText}`; // API should only return 202 or 204 when it doesn't fail
