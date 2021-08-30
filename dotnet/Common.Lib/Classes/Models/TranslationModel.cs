@@ -11,6 +11,7 @@ namespace LiveTL.Common.Classes.Models {
         [ProtoMember(7)] public string TranslatedText { get; set; }
         [ProtoMember(8)] public int Start { get; set; }
         [ProtoMember(9)] public int? End { get; set; }
+        [ProtoMember(10)] public TranslationState State { get; set; }
 
         public TranslationModel() {
         }
