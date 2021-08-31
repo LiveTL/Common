@@ -28,7 +28,7 @@ jobs:
           cp -r submodules/LiveTL/src build
           cp -r submodules/LiveTL/theme build/theme
           cd build
-          rm -rf manifest.json empty.html submodules __tests__ plugins
+          rm -rf manifest.json empty.html __tests__ plugins
           cd ..
           mkdir build/plugins
           cp -r submodules/LiveTL/src/plugins/*.json build/plugins 
