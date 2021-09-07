@@ -23,4 +23,4 @@ fs.writeFileSync('./build/package-livetl.json', JSON.stringify({
   description: ltlPackageJson.description,
   version: ltlPackageJson.version,
   ...JSON.parse(JSON.stringify(require("../submodules/LiveTL/src/manifest.json")))
-});
+}));
