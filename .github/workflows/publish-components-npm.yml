@@ -26,7 +26,7 @@ jobs:
           npm run update:list
           cd ../..
           cp -r submodules/LiveTL/src build
-          cp -r submodules/LiveTL/theme build/theme
+          # cp -r submodules/LiveTL/theme build/theme
           cd build
           rm -rf manifest.json empty.html __tests__ plugins
           cd ..
