@@ -19,7 +19,7 @@ fs.writeFileSync('./build/package.json', JSON.stringify(
   2
 ), 'utf8');
 
-fs.writeFileSync('./build/package-livetl.json', JSON.stringify({
+fs.writeFileSync('./build/meta/package.json', JSON.stringify({
   description: ltlPackageJson.description,
   version: ltlPackageJson.version,
   ...JSON.parse(JSON.stringify(require("../submodules/LiveTL/src/manifest.json")))

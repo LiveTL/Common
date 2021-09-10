@@ -31,7 +31,10 @@ jobs:
           rm -rf manifest.json empty.html __tests__ plugins
           cd ..
           mkdir build/plugins
+          mkdir build/meta
           cp -r submodules/LiveTL/src/plugins/*.json build/plugins 
+          cp submodules/LiveTL/postcss.config.js build/meta/postcss.config.js
+          cp submodules/LiveTL/tailwind.config.js build/meta/tailwind.config.js
           node utils/package.js
           npm publish build --access public
         env:
