@@ -23,6 +23,7 @@ jobs:
       - run: |
           cd javascript/ui-components
           cd submodules/LiveTL
+          yarn
           npm run update:list
           cd ../..
           cp -r submodules/LiveTL/src build
