@@ -12,7 +12,7 @@ Object.keys(deps).forEach(dep => {
 });
 
 let livetlManifest = JSON.parse(JSON.stringify(require("../submodules/LiveTL/src/manifest.json")));
-livetlManifest.assign({
+livetlManifest = Object.assign(livetlManifest, {
   version: ltlPackageJson.version,
   description: ltlPackageJson.description,
 });
