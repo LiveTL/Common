@@ -36,6 +36,7 @@ jobs:
           cp -r submodules/LiveTL/src/plugins/*.json build/plugins 
           cp submodules/LiveTL/postcss.config.js build/meta/postcss.config.js
           cp submodules/LiveTL/tailwind.config.js build/meta/tailwind.config.js
+          npm i replace-in-file
           node utils/package.js
           npm publish build --access public
         env:
