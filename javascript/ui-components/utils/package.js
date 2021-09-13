@@ -29,7 +29,7 @@ fs.writeFileSync('./build/meta/package.json', JSON.stringify({
 }));
 
 const results = replace.sync({
-  files: '../submodules/LiveTL/src/**',
+  files: './build/**',
   from: [
     /const isAndroid = false;/gi,
     /const MANIFEST_OBJECT = undefined;/gi
