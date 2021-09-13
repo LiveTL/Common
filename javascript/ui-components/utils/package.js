@@ -11,7 +11,11 @@ Object.keys(deps).forEach(dep => {
   if (dep.includes('vue')) delete deps[dep];
 });
 
-const livetlManifest = JSON.parse(JSON.stringify(require("../submodules/LiveTL/src/manifest.json")));
+let livetlManifest = JSON.parse(JSON.stringify(require("../submodules/LiveTL/src/manifest.json")));
+livetlManifest.assign({
+  version: ltlPackageJson.version,
+  description: ltlPackageJson.description,
+});
 
 const finalPackageJson = Object.assign(defaultPackageJson, {
   dependencies: deps
