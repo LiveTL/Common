@@ -32,10 +32,12 @@ const results = replace.sync({
   files: './build/**',
   from: [
     /const isAndroid = false;/gi,
+    /const isHolodex = false;/gi,
     /const MANIFEST_OBJECT = undefined;/gi
   ],
   to: [
     "const isAndroid = true;",
+    "const isHolodex = true;",
     `const MANIFEST_OBJECT = ${JSON.stringify(
         livetlManifest,
     )};`
