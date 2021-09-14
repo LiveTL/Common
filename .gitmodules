@@ -1,3 +1,4 @@
 [submodule "javascript/ui-components/submodules/LiveTL"]
 	path = javascript/ui-components/submodules/LiveTL
 	url = https://github.com/LiveTL/LiveTL
+	branch = dynamic
