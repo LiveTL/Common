@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Tracing;
 using ProtoBuf;
 
 namespace LiveTL.Common.Classes.Models {
@@ -12,6 +13,7 @@ namespace LiveTL.Common.Classes.Models {
         [ProtoMember(8)] public int Start { get; set; }
         [ProtoMember(9)] public int? End { get; set; }
         [ProtoMember(10)] public TranslationState State { get; set; }
+        [ProtoMember(11)] public DateTime CreatedAt { get; set; }
 
         public TranslationModel() {
         }
