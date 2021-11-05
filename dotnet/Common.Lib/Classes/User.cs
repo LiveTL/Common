@@ -4,6 +4,10 @@
         public string DisplayName { get; set; }
         public string ProfilePictureUrl { get; set; }
 
+        public User() {
+            
+        }
+        
         public User(string userId, string displayName, string profilePictureUrl = "") {
             UserID = userId;
             DisplayName = displayName;
